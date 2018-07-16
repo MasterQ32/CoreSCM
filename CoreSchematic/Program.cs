@@ -10,6 +10,12 @@ namespace CoreSchematic
     {
         static void Main(string[] args)
         {
+            var atmega32 = Device.Load("Devices/atmega32.xml");
+
+            var schem = new Schematic("main");
+
+            var cpu = schem.AddInstance("cpu", atmega32);
+            
         }
     }
 }
