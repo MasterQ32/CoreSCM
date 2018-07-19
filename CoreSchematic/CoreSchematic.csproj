@@ -51,9 +51,8 @@
     <Compile Include="Package.cs" />
     <Compile Include="PackageFactory.cs" />
     <Compile Include="PackageFactoryAttribute.cs" />
-    <Compile Include="Packages\DIP.cs" />
-    <Compile Include="Packages\MLF.cs" />
-    <Compile Include="Packages\TQFP.cs" />
+    <Compile Include="Packages\BGAFactory.cs" />
+    <Compile Include="Packages\GenericPackageFactory.cs" />
     <Compile Include="Pin.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,7 +65,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Devices\as6c1616.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Devices\atmega32.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Devices\lpc18xx.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

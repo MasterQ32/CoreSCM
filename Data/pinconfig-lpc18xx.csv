@@ -187,9 +187,8 @@ P1_18,N12,J10,67,95,[2],N;,I/O,GPIO0[13] — General purpose digital input/outpu
 "",,,,,,,I,CAN1_RD — CAN1 receiver input.
 "",,,,,,,-,R — Function reserved.
 "",,,,,,,I/O,EMC_D10 — External memory data line 10.
-P1_19,M11,K9,68,96,[2],N;,I,ENET_TX_CLK (ENET_REF_CLK) — Ethernet Transmit
-"",,,,,,PU,,Clock (MII interface) or Ethernet Reference Clock (RMII
-"",,,,,,,,interface).
+P1_19,M11,K9,68,96,[2],N;,I,ENET_REF_CLK — Ethernet Transmit Clock (MII interface) or Ethernet Reference Clock (RMII interface).
+P1_19,M11,K9,68,96,[2],N;,I,ENET_TX_CLK — Ethernet Transmit Clock (MII interface) or Ethernet Reference Clock (RMII interface).
 "",,,,,,,I/O,SSP1_SCK — Serial clock for SSP1.
 "",,,,,,,-,R — Function reserved.
 "",,,,,,,-,R — Function reserved.
@@ -1622,9 +1621,8 @@ CLK0,N5,K3,45,62,[4],O;,O,EMC_CLK0 — SDRAM clock 0.
 "",,,,,,,I/O,SD_CLK — SD/MMC card clock.
 "",,,,,,,O,EMC_CLK01 — SDRAM clock 0 and clock 1 combined.
 "",,,,,,,I/O,SSP1_SCK — Serial clock for SSP1.
-"",,,,,,,I,ENET_TX_CLK (ENET_REF_CLK) — Ethernet Transmit
-"",,,,,,,,Clock (MII interface) or Ethernet Reference Clock (RMII
-"",,,,,,,,interface).
+"",,,,,,,I,ENET_REF_CLK — Ethernet Transmit Clock (MII interface) or Ethernet Reference Clock (RMII interface).
+"",,,,,,,I,ENET_TX_CLK — Ethernet Transmit Clock (MII interface) or Ethernet Reference Clock (RMII interface).
 CLK1,T10,-,-,-,[4],O;,O,EMC_CLK1 — SDRAM clock 1.
 "",,,,,,PU,O,CLKOUT — Clock output pin.
 "",,,,,,,-,R — Function reserved.
@@ -1654,32 +1652,20 @@ CLK3,P12,-,-,-,[4],O;,O,EMC_CLK2 — SDRAM clock 2.
 "",,,,,,,,and received by the slave. Corresponds to the signal SCK in
 "",,,,,,,,the I2S-bus specification.
 DBGEN,L4,A6,28,41,[2],I,I,JTAG interface control signal. Also used for boundary scan.
-TCK/SWDCLK,J5,H2,27,38,[2],I; F,I,Test Clock for JTAG interface (default) or Serial Wire (SW)
-"",,,,,,,,clock.
+TCK/SWDCLK,J5,H2,27,38,[2],I; F,I,Test Clock for JTAG interface (default) or Serial Wire (SW) clock.
 TRST,M4,B4,29,42,[2],I; PU,I,Test Reset for JTAG interface.
-TMS/SWDIO,K6,C4,30,44,[2],I; PU,I,Test Mode Select for JTAG interface (default) or SW debug
-"",,,,,,,,data input/output.
+TMS/SWDIO,K6,C4,30,44,[2],I; PU,I,Test Mode Select for JTAG interface (default) or SW debug data input/output.
 TDO/SWO,K5,H3,31,46,[2],O,O,Test Data Out for JTAG interface (default) or SW trace output.
 TDI,J4,G3,26,35,[2],I; PU,I,Test Data In for JTAG interface.
-USB0_DP,F2,E1,18,26,[6],-,I/O,USB0 bidirectional D+ line. Do not add an external series
-"",,,,,,,,resistor.
-USB0_DM,G2,E2,20,28,[6],-,I/O,USB0 bidirectional D line. Do not add an external series
-"",,,,,,,,resistor.
-USB0_VBUS,F1,E3,21,29,[6],-,I/O,VBUS pin (power on USB cable). This pin includes an internal
-"",,,,,[7],,,pull-down resistor of 70 k (typical)  30 k.
-USB0_ID,H2,F1,22,30,[8],-,I,Indicates to the transceiver whether connected as an A-device
-"",,,,,,,,(USB0_ID LOW) or B-device (USB0_ID HIGH). For use with
-"",,,,,,,,"OTG, this pin has an internal pull-up resistor."
-USB0_RREF,H1,F3,24,32,[8],-,,12.0 k (accuracy 1 %) on-board resistor to ground for current
-"",,,,,,,,reference.
-USB1_DP,F12,E9,89,129,[9],-,I/O,USB1 bidirectional D+ line. Add an external series resistor of
-"",,,,,,,,33  +/- 2 %.
-USB1_DM,G12,E10,90,130,[9],-,I/O,USB1 bidirectional D line. Add an external series resistor of
-"",,,,,,,,33  +/- 2 %.
-I2C0_SCL,L15,D6,92,132,[10],I; F,I/O,I2C clock input/output. Open-drain output (for I2C-bus
-"",,,,,,,,compliance).
-I2C0_SDA,L16,E6,93,133,[10],I; F,I/O,I2C data input/output. Open-drain output (for I2C-bus
-"",,,,,,,,compliance).
+USB0_DP,F2,E1,18,26,[6],-,I/O,USB0 bidirectional D+ line. Do not add an external series resistor.
+USB0_DM,G2,E2,20,28,[6],-,I/O,USB0 bidirectional D line. Do not add an external series resistor.
+USB0_VBUS,F1,E3,21,29,[6],-,I/O,VBUS pin (power on USB cable). This pin includes an internal pull-down resistor of 70 k (typical)  30 k.
+USB0_ID,H2,F1,22,30,[8],-,I,Indicates to the transceiver whether connected as an A-device (USB0_ID LOW) or B-device (USB0_ID HIGH). For use with OTG, this pin has an internal pull-up resistor.
+USB0_RREF,H1,F3,24,32,[8],-,,12.0 k (accuracy 1 %) on-board resistor to ground for current reference.
+USB1_DP,F12,E9,89,129,[9],-,I/O,USB1 bidirectional D+ line. Add an external series resistor of 33  +/- 2 %.
+USB1_DM,G12,E10,90,130,[9],-,I/O,USB1 bidirectional D line. Add an external series resistor of 33  +/- 2 %.
+I2C0_SCL,L15,D6,92,132,[10],I; F,I/O,I2C clock input/output. Open-drain output (for I2C-bus compliance).
+I2C0_SDA,L16,E6,93,133,[10],I; F,I/O,I2C data input/output. Open-drain output (for I2C-bus compliance).
 RESET,D9,B6,128,185,[11],I; IA,I,External reset input: A LOW-going pulse as short as 50 ns on
 "",,,,,,,,"this pin resets the device, causing I/O ports and peripherals to"
 "",,,,,,,,"take on their default states, and processor execution to begin"
@@ -1699,40 +1685,26 @@ WAKEUP2,C9,-,-,-,[11],I; IA,I,External wake-up input; can raise an interrupt and
 WAKEUP3,D8,-,-,-,[11],I; IA,I,External wake-up input; can raise an interrupt and can cause
 "",,,,,,,,wake-up from any of the low power modes. A pulse with a
 "",,,,,,,,duration of at least 45 ns wakes up the part.
-ADC0_0/,E3,A2,6,8,[8],AI;,I,ADC input channel 0. Shared between 10-bit ADC0/1 and
-ADC1_0/DAC,,,,,,IA,,DAC.
-ADC0_1/,C3,A1,2,4,[8],AI;,I,ADC input channel 1. Shared between 10-bit ADC0/1.
-ADC1_1,,,,,,IA,,
-ADC0_2/,A4,B3,143,206,[8],AI;,I,ADC input channel 2. Shared between 10-bit ADC0/1.
-ADC1_2,,,,,,IA,,
-ADC0_3/,B5,A3,139,200,[8],AI;,I,ADC input channel 3. Shared between 10-bit ADC0/1.
-ADC1_3,,,,,,IA,,
-ADC0_4/,C6,-,138,199,[8],AI;,I,ADC input channel 4. Shared between 10-bit ADC0/1.
-ADC1_4,,,,,,IA,,
-ADC0_5/,B3,-,144,208,[8],AI;,I,ADC input channel 5. Shared between 10-bit ADC0/1.
-ADC1_5,,,,,,IA,,
-ADC0_6/,A5,-,142,204,[8],AI;,I,ADC input channel 6. Shared between 10-bit ADC0/1.
-ADC1_6,,,,,,IA,,
-ADC0_7/,C5,-,136,197,[8],AI;,I,ADC input channel 7. Shared between 10-bit ADC0/1.
-ADC1_7,,,,,,IA,,
+ADC0_0/ADC1_0/DAC,E3,A2,6,8,[8],AI;,I,ADC input channel 0. Shared between 10-bit ADC0/1 and DAC.
+ADC0_1/ADC1_1,C3,A1,2,4,[8],AI;,I,ADC input channel 1. Shared between 10-bit ADC0/1.
+ADC0_2/ADC1_2,A4,B3,143,206,[8],AI;,I,ADC input channel 2. Shared between 10-bit ADC0/1.
+ADC0_3/ADC1_3,B5,A3,139,200,[8],AI;,I,ADC input channel 3. Shared between 10-bit ADC0/1.
+ADC0_4/ADC1_4,C6,-,138,199,[8],AI;,I,ADC input channel 4. Shared between 10-bit ADC0/1.
+ADC0_5/ADC1_5,B3,-,144,208,[8],AI;,I,ADC input channel 5. Shared between 10-bit ADC0/1.
+ADC0_6/ADC1_6,A5,-,142,204,[8],AI;,I,ADC input channel 6. Shared between 10-bit ADC0/1.
+ADC0_7/ADC1_7,C5,-,136,197,[8],AI;,I,ADC input channel 7. Shared between 10-bit ADC0/1.
 RTC_ALARM,A11,C3,129,186,[11],-,O,RTC controlled output.
 RTCX1,A8,A5,125,182,[8],-,I,Input to the RTC 32 kHz ultra-low power oscillator circuit.
 RTCX2,B8,B5,126,183,[8],-,O,Output from the RTC 32 kHz ultra-low power oscillator circuit.
 SAMPLE,B9,-,-,-,[11],O,O,Event monitor sample output.
-XTAL1,D1,B1,12,18,[8],-,I,Input to the oscillator circuit and internal clock generator
-"",,,,,,,,circuits.
+XTAL1,D1,B1,12,18,[8],-,I,Input to the oscillator circuit and internal clock generator circuits.
 XTAL2,E1,C1,13,19,[8],-,O,Output from the oscillator amplifier.
-USB0_VDDA,F3,D1,16,24,-,-,Separate analog 3.3 V power supply for driver.
-3V3_DRIVER,,,,,,,
-USB0,G3,D2,17,25,-,-,USB 3.3 V separate power supply voltage.
-"_VDDA3V3",,,,,,,
-USB0_VSSA,H3,D3,19,27,,-,-,Dedicated analog ground for clean reference for termination
-"_TERM",,,,,,,,resistors.
-USB0_VSSA,G1,F2,23,31,,-,-,Dedicated clean analog ground for generation of reference
-"_REF",,,,,,,,currents and voltages.
+USB0_VDDA_3V3_DRIVER,F3,D1,16,24,-,-,-,Separate analog 3.3 V power supply for driver.
+USB0_VDDA3V3,G3,D2,17,25,-,-,-,USB 3.3 V separate power supply voltage.
+USB0_VSSA_TERM,H3,D3,19,27,,-,-,Dedicated analog ground for clean reference for termination resistors.
+USB0_VSSA_REF,G1,F2,23,31,,-,-,Dedicated clean analog ground for generation of reference currents and voltages.
 VDDA,B4,B2,137,198,,-,-,Analog power supply and ADC reference voltage.
-VBAT,B10,C5,127,184,,-,-,RTC power supply: 3.3 V on this pin supplies power to the
-"",,,,,,,,RTC.
+VBAT,B10,C5,127,184,,-,-,RTC power supply: 3.3 V on this pin supplies power to the RTC.
 VDDREG,"F10,","E4,","94,","135,",,,-,Main regulator power supply.
 "","F9,","E5,","131,","188,",,,,
 "","L8,",F4,"59,","195,",,,,

@@ -48,8 +48,14 @@ namespace CoreSchematic
 
         private static readonly List<PackageFactory> registeredFactories = new List<PackageFactory>();
 
+        private static readonly Dictionary<string, Package> cache = new Dictionary<string, Package>();
+
         public static Package CreatePackage(string id)
         {
+            id = id.ToUpper();
+            if (cache.TryGetValue(id, out var package))
+                return package;
+
             if (registeredFactories.Count == 0)
                 LoadPackageFactories();
 
@@ -57,7 +63,11 @@ namespace CoreSchematic
             if (factory == null)
                 throw new ArgumentOutOfRangeException(nameof(id), "A package with this id does not exist!");
 
-            return factory.Create(id);
+            package = factory.Create(id);
+
+            cache.Add(id, package);
+
+            return package;
         }
 
         private static void LoadPackageFactories()

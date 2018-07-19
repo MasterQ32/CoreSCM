@@ -35,11 +35,11 @@ namespace CoreSchematic
                     if (source.Count > 0)
                     {
                         foreach (var str in source)
-                            ranges.Add(str + prefix + "$" + i);
+                            ranges.Add(str + prefix + "[" + i + "]");
                     }
                     else
                     {
-                        ranges.Add(prefix + "$" + i);
+                        ranges.Add(prefix + "[" + i + "]");
                     }
                 });
 
