@@ -6,7 +6,12 @@ namespace CoreSchematic
 {
     public abstract class Component
     {
-        private readonly List<Pin> pins = new List<Pin>();
+        public static readonly Component Resistor = new BasicComponent("R", false);
+        public static readonly Component UnipolarCapacitor = new BasicComponent("C", false);
+        public static readonly Component BipolarCapacitor = new BasicComponent("C", false);
+        public static readonly Component Inductivity = new BasicComponent("L", false);
+
+        private readonly List<Function> functions = new List<Function>();
 
         protected Component(string name)
         {
@@ -15,16 +20,16 @@ namespace CoreSchematic
             this.Name = name;
         }
 
-        protected Pin AddPin(string name)
+        protected Function AddFunction(string name)
         {
-            var p = new Pin(this, name);
-            this.pins.Add(p);
+            var p = new Function(this, name);
+            this.functions.Add(p);
             return p;
         }
 
-        public Pin GetPin(string name) => this.pins.SingleOrDefault(p => p.Name == name);
+        public Function GetFunction(string name) => this.functions.SingleOrDefault(p => p.Name == name);
 
-        public IReadOnlyList<Pin> Pins => this.pins;
+        public IReadOnlyList<Function> Functions => this.functions;
 
         public string Name { get; }
 

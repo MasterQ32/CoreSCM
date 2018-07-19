@@ -1,14 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CoreSchematic
 {
     public sealed class DeviceConfiguration
     {
-        private readonly List<Tuple<Pin,int>> pins = new List<Tuple<Pin,int>>();
+        public DeviceConfiguration(Device dev, Package package)
+        {
+            this.Device = dev ?? throw new ArgumentNullException(nameof(dev));
+            this.Package = package ?? throw new ArgumentNullException(nameof(package));
 
-        public string Package { get; set; }
+            this.Bindings = package.Pins.Select(p => new Binding(this, p)).ToDictionary(b => b.Pin);
+        }
 
-        public IList<Tuple<Pin, int>> Pins => this.pins;
+        public Device Device { get; }
+
+        public Package Package { get; }
+        
+        public IReadOnlyDictionary<Pin, Binding> Bindings { get; }
     }
 }

@@ -28,27 +28,32 @@ namespace CoreSchematic
 
             var dev = new Device(obj.Name);
 
-            foreach(var package in obj.Packages ?? throw new InvalidDataException("Device requires at least one package!"))
+            foreach(var protopack in obj.Packages ?? throw new InvalidDataException("Device requires at least one package!"))
             {
-                if (dev.packages.TryGetValue(package.ID, out DeviceConfiguration cfg))
-                    throw new InvalidDataException($"Package {package.ID} was declared twice!");
-                cfg = new DeviceConfiguration();
-                cfg.Package = package.ID;
+                if (dev.packages.TryGetValue(protopack.ID, out DeviceConfiguration cfg))
+                    throw new InvalidDataException($"Package {protopack.ID} was declared twice!");
 
-                foreach (var pin in package.Pins ?? throw new InvalidDataException("Package requires at least one pin definition!"))
+                var package = PackageFactory.CreatePackage(protopack.ID);
+
+                cfg = new DeviceConfiguration(dev, package);
+
+                foreach (var protopin in protopack.Bindings ?? throw new InvalidDataException("Package requires at least one pin definition!"))
                 {
-                    var p = dev.GetPin(pin.Name);
-                    if (p == null)
-                        p = dev.AddPin(pin.Name);
+                    var fun = dev.GetFunction(protopin.Name);
+                    if (fun == null)
+                        fun = dev.AddFunction(protopin.Name);
 
-                    foreach (var loc in pin.Location.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    var exclusive = (protopin.BindMode == BindMode.All);
+
+                    foreach (var loc in protopin.Location.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                     {
-                        cfg.Pins.Add(Tuple.Create(p, int.Parse(loc)));
+                        var pin = package.GetPin(loc);
+                        cfg.Bindings[pin].Bind(fun, exclusive);
                     }
                 }
             
 
-                dev.packages.Add(package.ID, cfg);
+                dev.packages.Add(package.Name, cfg);
             }
 
 
@@ -72,16 +77,28 @@ namespace CoreSchematic
             public string ID { get; set; }
 
             [XmlElement("pin")]
-            public XMLPin[] Pins { get; set; }
+            public XMLPin[] Bindings { get; set; }
         }
 
         public class XMLPin
         {
-            [XmlAttribute("name")]
+            [XmlAttribute("function")]
             public string Name { get; set; }
 
             [XmlAttribute("loc")]
             public string Location { get; set; }
+
+            [XmlAttribute("bind")]
+            public BindMode BindMode { get; set; } = BindMode.Any;
+        }
+
+        public enum BindMode
+        {
+            [XmlEnum("any")]
+            Any = 0,
+
+            [XmlEnum("all")]
+            All = 1,
         }
     }
 }

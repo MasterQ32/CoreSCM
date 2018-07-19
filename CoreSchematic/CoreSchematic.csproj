@@ -41,15 +41,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicComponent.cs" />
+    <Compile Include="Binding.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="ComponentInstance.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="DeviceConfiguration.cs" />
+    <Compile Include="Function.cs" />
+    <Compile Include="Package.cs" />
+    <Compile Include="PackageFactory.cs" />
+    <Compile Include="PackageFactoryAttribute.cs" />
+    <Compile Include="Packages\DIP.cs" />
+    <Compile Include="Packages\MLF.cs" />
+    <Compile Include="Packages\TQFP.cs" />
     <Compile Include="Pin.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Range.cs" />
     <Compile Include="Schematic.cs" />
     <Compile Include="Signal.cs" />
+    <Compile Include="Unit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -59,5 +70,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

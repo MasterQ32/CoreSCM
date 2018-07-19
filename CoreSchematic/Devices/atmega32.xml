@@ -1,339 +1,339 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <device name="atmega32">
   <package id="DIP-40">
-    <pin name="PB0" loc="1" />
-    <pin name="XCK" loc="1" />
-    <pin name="T0"  loc="1" />
+    <pin function="PB0" loc="1" />
+    <pin function="XCK" loc="1" />
+    <pin function="T0"  loc="1" />
   
-    <pin name="PB1" loc="2" />
-    <pin name="T1" loc="2" />
+    <pin function="PB1" loc="2" />
+    <pin function="T1" loc="2" />
   
-    <pin name="PB2" loc="3" />
-    <pin name="INT2" loc="3" />
-    <pin name="AIN0" loc="3" />
+    <pin function="PB2" loc="3" />
+    <pin function="INT2" loc="3" />
+    <pin function="AIN0" loc="3" />
     
-    <pin name="PB3" loc="4" />
-    <pin name="OC0" loc="4" />
-    <pin name="AIN1" loc="4" />
+    <pin function="PB3" loc="4" />
+    <pin function="OC0" loc="4" />
+    <pin function="AIN1" loc="4" />
     
-    <pin name="PB4" loc="5" />
-    <pin name="/SS" loc="5" />
+    <pin function="PB4" loc="5" />
+    <pin function="/SS" loc="5" />
     
-    <pin name="PB5" loc="6" />
-    <pin name="MOSI" loc="6" />
+    <pin function="PB5" loc="6" />
+    <pin function="MOSI" loc="6" />
     
-    <pin name="PB6" loc="7" />
-    <pin name="MISO" loc="7" />
+    <pin function="PB6" loc="7" />
+    <pin function="MISO" loc="7" />
   
-    <pin name="PB7" loc="8" />
-    <pin name="SCK" loc="8" />
+    <pin function="PB7" loc="8" />
+    <pin function="SCK" loc="8" />
   
-    <pin name="/RESET" loc="9" />
+    <pin function="/RESET" loc="9" />
   
-    <pin name="VCC" loc="10" />
-    <pin name="GND" loc="11,31" />
+    <pin function="VCC" loc="10"  bind="all" />
+    <pin function="GND" loc="11,31" bind="all" />
   
-    <pin name="XTAK2" loc="12" />
-    <pin name="XTAL1" loc="13" />
+    <pin function="XTAK2" loc="12" />
+    <pin function="XTAL1" loc="13" />
   
-    <pin name="PD0" loc="14" />
-    <pin name="RXD" loc="14" />
+    <pin function="PD0" loc="14" />
+    <pin function="RXD" loc="14" />
     
-    <pin name="PD1" loc="15" />
-    <pin name="TXD" loc="15" />
+    <pin function="PD1" loc="15" />
+    <pin function="TXD" loc="15" />
     
-    <pin name="PD2" loc="16" />
-    <pin name="INT0" loc="16" />
+    <pin function="PD2" loc="16" />
+    <pin function="INT0" loc="16" />
     
-    <pin name="PD3" loc="17" />
-    <pin name="INT1" loc="17" />
+    <pin function="PD3" loc="17" />
+    <pin function="INT1" loc="17" />
     
-    <pin name="PD4" loc="18" />
-    <pin name="OC1B" loc="18" />
+    <pin function="PD4" loc="18" />
+    <pin function="OC1B" loc="18" />
     
-    <pin name="PD5" loc="19" />
-    <pin name="OC1A" loc="19" />
+    <pin function="PD5" loc="19" />
+    <pin function="OC1A" loc="19" />
     
-    <pin name="PD6" loc="20" />
-    <pin name="ICP1" loc="20" />
+    <pin function="PD6" loc="20" />
+    <pin function="ICP1" loc="20" />
   
-    <pin name="PD7" loc="21" />
-    <pin name="OC2" loc="21" />
+    <pin function="PD7" loc="21" />
+    <pin function="OC2" loc="21" />
   
-    <pin name="PC0" loc="22" />
-    <pin name="SCL" loc="22" />
+    <pin function="PC0" loc="22" />
+    <pin function="SCL" loc="22" />
     
-    <pin name="PC1" loc="23" />
-    <pin name="SDA" loc="23" />
+    <pin function="PC1" loc="23" />
+    <pin function="SDA" loc="23" />
     
-    <pin name="PC2" loc="24" />
-    <pin name="TCK" loc="24" />
+    <pin function="PC2" loc="24" />
+    <pin function="TCK" loc="24" />
     
-    <pin name="PC3" loc="25" />
-    <pin name="TMS" loc="25" />
+    <pin function="PC3" loc="25" />
+    <pin function="TMS" loc="25" />
     
-    <pin name="PC4" loc="26" />
-    <pin name="TDO" loc="26" />
+    <pin function="PC4" loc="26" />
+    <pin function="TDO" loc="26" />
     
-    <pin name="PC5" loc="27" />
-    <pin name="TDI" loc="27" />
+    <pin function="PC5" loc="27" />
+    <pin function="TDI" loc="27" />
     
-    <pin name="PC6" loc="28" />
-    <pin name="TOSC1" loc="28" />
+    <pin function="PC6" loc="28" />
+    <pin function="TOSC1" loc="28" />
   
-    <pin name="PC7" loc="29" />
-    <pin name="TOSC2" loc="29" />
+    <pin function="PC7" loc="29" />
+    <pin function="TOSC2" loc="29" />
   
-    <pin name="AVCC" loc="30" />
+    <pin function="AVCC" loc="30" />
   
-    <pin name="AREF" loc="32" />
+    <pin function="AREF" loc="32" />
   
-    <pin name="PA7" loc="33" />
-    <pin name="ADC7" loc="33" />
+    <pin function="PA7" loc="33" />
+    <pin function="ADC7" loc="33" />
     
-    <pin name="PA6" loc="34" />
-    <pin name="ADC6" loc="34" />
+    <pin function="PA6" loc="34" />
+    <pin function="ADC6" loc="34" />
     
-    <pin name="PA5" loc="35" />
-    <pin name="ADC5" loc="35" />
+    <pin function="PA5" loc="35" />
+    <pin function="ADC5" loc="35" />
     
-    <pin name="PA4" loc="36" />
-    <pin name="ADC4" loc="36" />
+    <pin function="PA4" loc="36" />
+    <pin function="ADC4" loc="36" />
     
-    <pin name="PA3" loc="37" />
-    <pin name="ADC3" loc="37" />
+    <pin function="PA3" loc="37" />
+    <pin function="ADC3" loc="37" />
     
-    <pin name="PA2" loc="38" />
-    <pin name="ADC2" loc="38" />
+    <pin function="PA2" loc="38" />
+    <pin function="ADC2" loc="38" />
     
-    <pin name="PA1" loc="39" />
-    <pin name="ADC1" loc="39" />
+    <pin function="PA1" loc="39" />
+    <pin function="ADC1" loc="39" />
 
-    <pin name="PA0" loc="40" />
-    <pin name="ADC0" loc="40" />
+    <pin function="PA0" loc="40" />
+    <pin function="ADC0" loc="40" />
   </package>
   <package id="TQFP-44">
-    <pin name="PB0" loc="40" />
-    <pin name="XCK" loc="40" />
-    <pin name="T0"  loc="40" />
+    <pin function="PB0" loc="40" />
+    <pin function="XCK" loc="40" />
+    <pin function="T0"  loc="40" />
   
-    <pin name="PB1" loc="41" />
-    <pin name="T1" loc="41" />
+    <pin function="PB1" loc="41" />
+    <pin function="T1" loc="41" />
   
-    <pin name="PB2" loc="42" />
-    <pin name="INT2" loc="42" />
-    <pin name="AIN0" loc="42" />
+    <pin function="PB2" loc="42" />
+    <pin function="INT2" loc="42" />
+    <pin function="AIN0" loc="42" />
     
-    <pin name="PB3" loc="43" />
-    <pin name="OC0" loc="43" />
-    <pin name="AIN1" loc="43" />
+    <pin function="PB3" loc="43" />
+    <pin function="OC0" loc="43" />
+    <pin function="AIN1" loc="43" />
     
-    <pin name="PB4" loc="44" />
-    <pin name="/SS" loc="44" />
+    <pin function="PB4" loc="44" />
+    <pin function="/SS" loc="44" />
     
-    <pin name="PB5" loc="1" />
-    <pin name="MOSI" loc="1" />
+    <pin function="PB5" loc="1" />
+    <pin function="MOSI" loc="1" />
     
-    <pin name="PB6" loc="2" />
-    <pin name="MISO" loc="2" />
+    <pin function="PB6" loc="2" />
+    <pin function="MISO" loc="2" />
   
-    <pin name="PB7" loc="3" />
-    <pin name="SCK" loc="3" />
+    <pin function="PB7" loc="3" />
+    <pin function="SCK" loc="3" />
   
-    <pin name="/RESET" loc="4" />
+    <pin function="/RESET" loc="4" />
   
-    <pin name="VCC" loc="5,17,38" />
-    <pin name="GND" loc="6,18,28,39" />
+    <pin function="VCC" loc="5,17,38" bind="all" />
+    <pin function="GND" loc="6,18,28,39" bind="all" />
   
-    <pin name="XTAK2" loc="7" />
-    <pin name="XTAL1" loc="8" />
+    <pin function="XTAK2" loc="7" />
+    <pin function="XTAL1" loc="8" />
   
-    <pin name="PD0" loc="9" />
-    <pin name="RXD" loc="9" />
+    <pin function="PD0" loc="9" />
+    <pin function="RXD" loc="9" />
     
-    <pin name="PD1" loc="10" />
-    <pin name="TXD" loc="10" />
+    <pin function="PD1" loc="10" />
+    <pin function="TXD" loc="10" />
     
-    <pin name="PD2" loc="11" />
-    <pin name="INT0" loc="11" />
+    <pin function="PD2" loc="11" />
+    <pin function="INT0" loc="11" />
     
-    <pin name="PD3" loc="12" />
-    <pin name="INT1" loc="12" />
+    <pin function="PD3" loc="12" />
+    <pin function="INT1" loc="12" />
     
-    <pin name="PD4" loc="13" />
-    <pin name="OC1B" loc="13" />
+    <pin function="PD4" loc="13" />
+    <pin function="OC1B" loc="13" />
     
-    <pin name="PD5" loc="14" />
-    <pin name="OC1A" loc="14" />
+    <pin function="PD5" loc="14" />
+    <pin function="OC1A" loc="14" />
     
-    <pin name="PD6" loc="15" />
-    <pin name="ICP1" loc="15" />
+    <pin function="PD6" loc="15" />
+    <pin function="ICP1" loc="15" />
   
-    <pin name="PD7" loc="16" />
-    <pin name="OC2" loc="16" />
+    <pin function="PD7" loc="16" />
+    <pin function="OC2" loc="16" />
   
-    <pin name="PC0" loc="19" />
-    <pin name="SCL" loc="19" />
+    <pin function="PC0" loc="19" />
+    <pin function="SCL" loc="19" />
     
-    <pin name="PC1" loc="20" />
-    <pin name="SDA" loc="20" />
+    <pin function="PC1" loc="20" />
+    <pin function="SDA" loc="20" />
     
-    <pin name="PC2" loc="21" />
-    <pin name="TCK" loc="21" />
+    <pin function="PC2" loc="21" />
+    <pin function="TCK" loc="21" />
     
-    <pin name="PC3" loc="22" />
-    <pin name="TMS" loc="22" />
+    <pin function="PC3" loc="22" />
+    <pin function="TMS" loc="22" />
     
-    <pin name="PC4" loc="23" />
-    <pin name="TDO" loc="23" />
+    <pin function="PC4" loc="23" />
+    <pin function="TDO" loc="23" />
     
-    <pin name="PC5" loc="24" />
-    <pin name="TDI" loc="24" />
+    <pin function="PC5" loc="24" />
+    <pin function="TDI" loc="24" />
     
-    <pin name="PC6" loc="25" />
-    <pin name="TOSC1" loc="25" />
+    <pin function="PC6" loc="25" />
+    <pin function="TOSC1" loc="25" />
   
-    <pin name="PC7" loc="26" />
-    <pin name="TOSC2" loc="26" />
+    <pin function="PC7" loc="26" />
+    <pin function="TOSC2" loc="26" />
   
-    <pin name="AVCC" loc="27" />
+    <pin function="AVCC" loc="27" />
   
-    <pin name="AREF" loc="29" />
+    <pin function="AREF" loc="29" />
   
-    <pin name="PA7" loc="30" />
-    <pin name="ADC7" loc="30" />
+    <pin function="PA7" loc="30" />
+    <pin function="ADC7" loc="30" />
     
-    <pin name="PA6" loc="31" />
-    <pin name="ADC6" loc="31" />
+    <pin function="PA6" loc="31" />
+    <pin function="ADC6" loc="31" />
     
-    <pin name="PA5" loc="32" />
-    <pin name="ADC5" loc="32" />
+    <pin function="PA5" loc="32" />
+    <pin function="ADC5" loc="32" />
     
-    <pin name="PA4" loc="33" />
-    <pin name="ADC4" loc="33" />
+    <pin function="PA4" loc="33" />
+    <pin function="ADC4" loc="33" />
     
-    <pin name="PA3" loc="34" />
-    <pin name="ADC3" loc="34" />
+    <pin function="PA3" loc="34" />
+    <pin function="ADC3" loc="34" />
     
-    <pin name="PA2" loc="35" />
-    <pin name="ADC2" loc="35" />
+    <pin function="PA2" loc="35" />
+    <pin function="ADC2" loc="35" />
     
-    <pin name="PA1" loc="36" />
-    <pin name="ADC1" loc="36" />
+    <pin function="PA1" loc="36" />
+    <pin function="ADC1" loc="36" />
 
-    <pin name="PA0" loc="37" />
-    <pin name="ADC0" loc="37" />
+    <pin function="PA0" loc="37" />
+    <pin function="ADC0" loc="37" />
   </package>
   <package id="MLF-44">
-    <pin name="PB0" loc="40" />
-    <pin name="XCK" loc="40" />
-    <pin name="T0"  loc="40" />
+    <pin function="PB0" loc="40" />
+    <pin function="XCK" loc="40" />
+    <pin function="T0"  loc="40" />
   
-    <pin name="PB1" loc="41" />
-    <pin name="T1" loc="41" />
+    <pin function="PB1" loc="41" />
+    <pin function="T1" loc="41" />
   
-    <pin name="PB2" loc="42" />
-    <pin name="INT2" loc="42" />
-    <pin name="AIN0" loc="42" />
+    <pin function="PB2" loc="42" />
+    <pin function="INT2" loc="42" />
+    <pin function="AIN0" loc="42" />
     
-    <pin name="PB3" loc="43" />
-    <pin name="OC0" loc="43" />
-    <pin name="AIN1" loc="43" />
+    <pin function="PB3" loc="43" />
+    <pin function="OC0" loc="43" />
+    <pin function="AIN1" loc="43" />
     
-    <pin name="PB4" loc="44" />
-    <pin name="/SS" loc="44" />
+    <pin function="PB4" loc="44" />
+    <pin function="/SS" loc="44" />
     
-    <pin name="PB5" loc="1" />
-    <pin name="MOSI" loc="1" />
+    <pin function="PB5" loc="1" />
+    <pin function="MOSI" loc="1" />
     
-    <pin name="PB6" loc="2" />
-    <pin name="MISO" loc="2" />
+    <pin function="PB6" loc="2" />
+    <pin function="MISO" loc="2" />
   
-    <pin name="PB7" loc="3" />
-    <pin name="SCK" loc="3" />
+    <pin function="PB7" loc="3" />
+    <pin function="SCK" loc="3" />
   
-    <pin name="/RESET" loc="4" />
+    <pin function="/RESET" loc="4" />
   
-    <pin name="VCC" loc="5,17,38" />
-    <pin name="GND" loc="6,18,28,39" />
+    <pin function="VCC" loc="5,17,38" bind="all"  />
+    <pin function="GND" loc="6,18,28,39" bind="all"  />
   
-    <pin name="XTAK2" loc="7" />
-    <pin name="XTAL1" loc="8" />
+    <pin function="XTAK2" loc="7" />
+    <pin function="XTAL1" loc="8" />
   
-    <pin name="PD0" loc="9" />
-    <pin name="RXD" loc="9" />
+    <pin function="PD0" loc="9" />
+    <pin function="RXD" loc="9" />
     
-    <pin name="PD1" loc="10" />
-    <pin name="TXD" loc="10" />
+    <pin function="PD1" loc="10" />
+    <pin function="TXD" loc="10" />
     
-    <pin name="PD2" loc="11" />
-    <pin name="INT0" loc="11" />
+    <pin function="PD2" loc="11" />
+    <pin function="INT0" loc="11" />
     
-    <pin name="PD3" loc="12" />
-    <pin name="INT1" loc="12" />
+    <pin function="PD3" loc="12" />
+    <pin function="INT1" loc="12" />
     
-    <pin name="PD4" loc="13" />
-    <pin name="OC1B" loc="13" />
+    <pin function="PD4" loc="13" />
+    <pin function="OC1B" loc="13" />
     
-    <pin name="PD5" loc="14" />
-    <pin name="OC1A" loc="14" />
+    <pin function="PD5" loc="14" />
+    <pin function="OC1A" loc="14" />
     
-    <pin name="PD6" loc="15" />
-    <pin name="ICP1" loc="15" />
+    <pin function="PD6" loc="15" />
+    <pin function="ICP1" loc="15" />
   
-    <pin name="PD7" loc="16" />
-    <pin name="OC2" loc="16" />
+    <pin function="PD7" loc="16" />
+    <pin function="OC2" loc="16" />
   
-    <pin name="PC0" loc="19" />
-    <pin name="SCL" loc="19" />
+    <pin function="PC0" loc="19" />
+    <pin function="SCL" loc="19" />
     
-    <pin name="PC1" loc="20" />
-    <pin name="SDA" loc="20" />
+    <pin function="PC1" loc="20" />
+    <pin function="SDA" loc="20" />
     
-    <pin name="PC2" loc="21" />
-    <pin name="TCK" loc="21" />
+    <pin function="PC2" loc="21" />
+    <pin function="TCK" loc="21" />
     
-    <pin name="PC3" loc="22" />
-    <pin name="TMS" loc="22" />
+    <pin function="PC3" loc="22" />
+    <pin function="TMS" loc="22" />
     
-    <pin name="PC4" loc="23" />
-    <pin name="TDO" loc="23" />
+    <pin function="PC4" loc="23" />
+    <pin function="TDO" loc="23" />
     
-    <pin name="PC5" loc="24" />
-    <pin name="TDI" loc="24" />
+    <pin function="PC5" loc="24" />
+    <pin function="TDI" loc="24" />
     
-    <pin name="PC6" loc="25" />
-    <pin name="TOSC1" loc="25" />
+    <pin function="PC6" loc="25" />
+    <pin function="TOSC1" loc="25" />
   
-    <pin name="PC7" loc="26" />
-    <pin name="TOSC2" loc="26" />
+    <pin function="PC7" loc="26" />
+    <pin function="TOSC2" loc="26" />
   
-    <pin name="AVCC" loc="27" />
+    <pin function="AVCC" loc="27" />
   
-    <pin name="AREF" loc="29" />
+    <pin function="AREF" loc="29" />
   
-    <pin name="PA7" loc="30" />
-    <pin name="ADC7" loc="30" />
+    <pin function="PA7" loc="30" />
+    <pin function="ADC7" loc="30" />
     
-    <pin name="PA6" loc="31" />
-    <pin name="ADC6" loc="31" />
+    <pin function="PA6" loc="31" />
+    <pin function="ADC6" loc="31" />
     
-    <pin name="PA5" loc="32" />
-    <pin name="ADC5" loc="32" />
+    <pin function="PA5" loc="32" />
+    <pin function="ADC5" loc="32" />
     
-    <pin name="PA4" loc="33" />
-    <pin name="ADC4" loc="33" />
+    <pin function="PA4" loc="33" />
+    <pin function="ADC4" loc="33" />
     
-    <pin name="PA3" loc="34" />
-    <pin name="ADC3" loc="34" />
+    <pin function="PA3" loc="34" />
+    <pin function="ADC3" loc="34" />
     
-    <pin name="PA2" loc="35" />
-    <pin name="ADC2" loc="35" />
+    <pin function="PA2" loc="35" />
+    <pin function="ADC2" loc="35" />
     
-    <pin name="PA1" loc="36" />
-    <pin name="ADC1" loc="36" />
+    <pin function="PA1" loc="36" />
+    <pin function="ADC1" loc="36" />
 
-    <pin name="PA0" loc="37" />
-    <pin name="ADC0" loc="37" />
+    <pin function="PA0" loc="37" />
+    <pin function="ADC0" loc="37" />
   </package>
 </device>

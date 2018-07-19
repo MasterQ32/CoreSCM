@@ -9,7 +9,7 @@ namespace CoreSchematic
     /// </summary>
     public sealed class Signal
     {
-        private readonly List<Pin> attachments = new List<Pin>();
+        private readonly List<Function> attachments = new List<Function>();
 
         public Signal(Schematic schematic)
         {
@@ -25,36 +25,36 @@ namespace CoreSchematic
             this.Name = name;
         }
 
-        public void Attach(Pin pin)
+        public void Attach(Function fun)
         {
-            if (pin == null)
-                throw new ArgumentNullException(nameof(pin));
-            if (pin.IsInstanced == false)
+            if (fun == null)
+                throw new ArgumentNullException(nameof(fun));
+            if (fun.IsInstanced == false)
                 throw new ArgumentException("Pin is abstract and cannot be attached!");
-            if (pin.Schematic != this.Schematic)
+            if (fun.Schematic != this.Schematic)
                 throw new ArgumentException("Pins component instance is not located in this schematic!");
 
-            if (this.attachments.Contains(pin) == false)
-                this.attachments.Add(pin);
+            if (this.attachments.Contains(fun) == false)
+                this.attachments.Add(fun);
         }
 
-        public void Detach(Pin pin)
+        public void Detach(Function fun)
         {
-            if (pin == null)
-                throw new ArgumentNullException(nameof(pin));
-            if (pin.IsInstanced == false)
+            if (fun == null)
+                throw new ArgumentNullException(nameof(fun));
+            if (fun.IsInstanced == false)
                 throw new ArgumentException("Pin is abstract and cannot be attached!");
-            if (pin.Schematic != this.Schematic)
+            if (fun.Schematic != this.Schematic)
                 throw new ArgumentException("Pins component instance is not located in this schematic!");
 
-            this.attachments.Remove(pin);
+            this.attachments.Remove(fun);
         }
 
         public Schematic Schematic { get; }
 
         public string Name { get; }
 
-        public IReadOnlyList<Pin> Attachments => this.attachments;
+        public IReadOnlyList<Function> Attachments => this.attachments;
 
         public override string ToString() => this.Name ?? "<Anonymous Signal>";
     }

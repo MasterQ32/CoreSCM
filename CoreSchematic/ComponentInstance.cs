@@ -13,8 +13,10 @@ namespace CoreSchematic
             this.Name = name;
             this.Schematic = schematic ?? throw new ArgumentNullException(nameof(schematic));
             this.Component = component ?? throw new ArgumentNullException(nameof(component));
-            this.Pins = this.Component.Pins.Select(p => p.MakeInstance(this)).ToArray();
+            this.Functions = this.Component.Functions.Select(p => p.MakeInstance(this)).ToArray();
         }
+
+        public Function GetFunction(string name) => this.Functions.SingleOrDefault(f => f.Name == name);
 
         public string Name { get; }
 
@@ -22,7 +24,7 @@ namespace CoreSchematic
 
         public Component Component { get; }
 
-        public IReadOnlyList<Pin> Pins { get; }
+        public IReadOnlyList<Function> Functions { get; }
 
         public override string ToString() => $"{Name} : {Component}";
     }
