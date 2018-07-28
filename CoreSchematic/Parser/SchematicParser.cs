@@ -153,7 +153,35 @@ namespace CoreSchematic.Parser
 
 		private void ParseConnector(Schematic schematic)
 		{
-			throw new NotImplementedException();
+			var stream = new List<List<Token>>();
+			
+			var sequence = new List<Token>();
+			stream.Add(sequence);
+			do
+			{
+				var socket = Next(TType.IDENTIFIER, TType.INLINE_PART);
+				sequence.Add(socket);
+				
+				switch(Next(TType.CONNECTOR, TType.SEMICOLON, TType.COMMA).Type)
+				{
+				case TType.SEMICOLON:
+					// Semicolon finalizes the stream
+					goto stream_done;
+				case TType.COMMA:
+					// Comma separates elements in the current sequence, 
+					// so don't do anything here
+					break;
+				case TType.CONNECTOR:
+					// Connector separates sequences in a stream
+					// So a new connector means start a new sequence
+					sequence = new List<Token>();
+					stream.Add(sequence);
+					break;
+				}
+				
+			} while (true);
+		stream_done:
+			;
 		}
 
 		private void ParseSignalDef(Schematic schematic)
@@ -194,7 +222,7 @@ namespace CoreSchematic.Parser
 			foreach (var name in names)
 			{
 				var inst = schematic.AddInstance(name, type);
-				foreach(var a in attribs)
+				foreach (var a in attribs)
 					inst.AddAttribute(a.Value);
 			}
 		}
