@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreSchematic", "CoreSchematic\CoreSchematic.csproj", "{90D938C3-25DE-441C-89A7-C7FAF5F83DDC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{11A798D0-031C-46C9-96C0-F9A22103247F}"
+	ProjectSection(SolutionItems) = preProject
+		Examples\Astable Multivibrator.scm = Examples\Astable Multivibrator.scm
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

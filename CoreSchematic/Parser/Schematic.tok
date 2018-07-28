@@ -1,0 +1,33 @@
+﻿#
+# Token Format for CoreSchematic
+#
+
+COMMENT/msd   := \/\*.*?\*\/
+COMMENT/md    := \/\/.*$
+
+KEYWORD/i     := \b(?<id>device|schematic|signal|import|bus)\b
+INLINE_PART   := \[(?<type>[RCL])\:(?<value>\d+(?:\.\d+)?)(?<unit>[pnµmdDkMGT]?)\]
+
+STRING/ms     := "(?<value>[^"]+)"
+
+NUMBER        := \b(?<value>(?<magnitude>\d+(?:\.\d+)?)(?<unit>[pnµmdDkMGT]?))
+
+CONNECTOR     := \-\-
+
+IDENTIFIER    := (?<value>[\w_\-\+]+(?:\[[\d\,\.]+\][\w_\-\+]*)*)
+
+DOT           := \.
+COMMA         := \,
+COLON         := \:
+SEMICOLON     := \;
+
+BRACE_OP      := \{
+BRACE_CL      := \}
+
+PAREN_OP      := \(
+PAREN_CL      := \)
+
+BRACKET_OP    := \[
+BRACKET_CL    := \]
+
+WHITESPACE/d  := \s+
