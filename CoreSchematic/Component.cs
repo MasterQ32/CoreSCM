@@ -8,7 +8,6 @@ namespace CoreSchematic
     {
         public static readonly Component Resistor = new BasicComponent("R", false);
         public static readonly Component UnipolarCapacitor = new BasicComponent("C", false);
-        public static readonly Component BipolarCapacitor = new BasicComponent("C", false);
         public static readonly Component Inductivity = new BasicComponent("L", false);
 
         private readonly List<Function> functions = new List<Function>();

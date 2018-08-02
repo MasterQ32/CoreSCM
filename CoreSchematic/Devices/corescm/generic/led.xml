@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<device name="LED">
+  <package id="generic-2">
+    <pin function="A" loc="1" />
+    <pin function="C" loc="2" />
+  </package>
+</device>

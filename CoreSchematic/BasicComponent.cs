@@ -17,8 +17,8 @@ namespace CoreSchematic
             }
             else
             {
-                this.AddFunction("A");
-                this.AddFunction("B");
+                this.AddFunction("[0]");
+                this.AddFunction("[1]");
             }
         }
     }

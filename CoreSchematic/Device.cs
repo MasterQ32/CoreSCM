@@ -14,6 +14,11 @@ namespace CoreSchematic
         {
             
         }
+        
+        public void Add(string name)
+        {
+        	this.AddFunction(name);
+        }
 
         public static Device Load(string fileName)
         {

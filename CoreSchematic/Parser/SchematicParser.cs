@@ -18,6 +18,12 @@ namespace CoreSchematic.Parser
 
 		public event EventHandler<ResolveComponentEventArgs> ResolveComponent;
 
+		public event EventHandler<ResolveImportEventArgs> ResolveImport;
+
+		private List<Component> importedComponents = new List<Component>();
+
+		private List<Schematic> schematics = new List<Schematic>();
+
 		public SchematicParser()
 		{
 
@@ -120,6 +126,12 @@ namespace CoreSchematic.Parser
 			{
 				path.Add(NextIdentifier());
 			} while (Next(TType.DOT, TType.SEMICOLON).Type != TType.SEMICOLON);
+			var ea = new ResolveImportEventArgs(path.ToArray());
+			this.ResolveImport?.Invoke(this, ea);
+			if (ea.Library == null)
+				throw new ParserException(lastToken, $"Could not find library {string.Join(".", path)}");
+			else
+				this.importedComponents.AddRange(ea.Library);
 		}
 
 		private void ParseSchematic()
@@ -150,6 +162,7 @@ namespace CoreSchematic.Parser
 				}
 			}
 			Next(TType.BRACE_CL);
+			this.schematics.Add(schematic);
 		}
 
 		private void ParseConnector(Schematic schematic)
@@ -163,20 +176,33 @@ namespace CoreSchematic.Parser
 			{
 				var socket = Next(TType.IDENTIFIER, TType.INLINE_PART);
 				first = first ?? socket;
-				ISocket sock;
 				switch (socket.Type)
 				{
 					case TType.IDENTIFIER:
-						var path = new ResourcePath { socket.Value };
+						var items = new List<ResourcePath>(Range.Unwrap(socket.Value).Select(s => new ResourcePath(s)));
 						while (Peek().Type == TType.DOT)
 						{
 							Next(TType.DOT);
-							path.Add(Next(TType.IDENTIFIER).Value);
+							var more = Range.Unwrap(Next(TType.IDENTIFIER).Value);
+							var next = new List<ResourcePath>();
+							foreach (var add in more)
+							{
+								foreach (var item in items)
+								{
+									var x = item.Clone();
+									x.Add(add);
+									next.Add(x);
+								}
+							}
+							items = next;
 						}
-						
-						// TODO: Expand the range specifiers here
-						
-						sock= path;
+
+						if (items.Count == 0)
+							throw new ParserException(socket, "Requires at least a single specification!");
+
+						foreach (var item in items)
+							sequence.Add(item);
+
 						break;
 					case TType.INLINE_PART:
 						{
@@ -190,19 +216,12 @@ namespace CoreSchematic.Parser
 									throw new ParserException(socket, "Unkown inline component!");
 							}
 
-							var name = string.Format("{0}{1}",
-								socket.Groups["type"],
-								schematic.Components.Count(c => c.Component == comp) + 1);
-
-							var inst = schematic.AddInstance(name, comp);
-							inst.AddAttribute(new Attribute("value", socket.Groups["value"]));
-							sock = new InlineComponent(inst);
+							sequence.Add(new InlineComponent(comp, socket.Groups["value"]));
 							break;
 						}
 					default:
 						throw new ParserException(socket, "Unexpected token!");
 				}
-				sequence.Add(sock);
 
 				switch (Next(TType.CONNECTOR, TType.SEMICOLON, TType.COMMA).Type)
 				{
@@ -223,25 +242,124 @@ namespace CoreSchematic.Parser
 
 			} while (true);
 		stream_done:
+			var bus = new List<ISocket[]>();
+
 			// Validate stream here
 			if (stream.Any(x => x.Count != 1))
 			{
 				int max = stream.Max(x => x.Count);
-				if (stream.Any(x => x.Count != max))
+				
+				// all elements have "max" count
+				for (int i = 0; i < max; i++)
 				{
-					if (!stream.All(x => x.Count == max || x.Count == 1))
-						throw new ParserException(first, $"Count mismatch: Not all sockets have 1 or {max} elements!");
-					// at least one element has max count and 1 count
-				}
-				else
-				{
-					// all elements have "max" count
+					var substream = new ISocket[stream.Count];
+					for (int j = 0; j < substream.Length; j++)
+					{
+						if (stream[j].Count == 1)
+						{
+							substream[j] = stream[j][0];
+						}
+						else
+						{
+							substream[j] = stream[j][i];
+						}
+					}
+					bus.Add(substream);
 				}
 			}
 			else
 			{
-
+				// We only have a 
+				bus.Add(stream.Select(x => x.Single()).ToArray());
 			}
+
+			foreach (var childnodes in bus)
+			{
+				var nodes = childnodes.Select(x =>
+				{
+					Function function = null;
+					Signal signal = null;
+					ComponentInstance inline = null;
+					if (x is InlineComponent inl)
+					{
+						var name = string.Format("{0}{1}",
+							inl.Type.Name,
+							schematic.Components.Count(c => c.Component == inl.Type) + 1);
+						var inst = schematic.AddInstance(name, inl.Type);
+						inst.AddAttribute(new Attribute("value", inl.Value));
+						return new { Signal = signal, Function = function, Component = inst };
+					}
+					else
+					{
+						GetResource(schematic, x as ResourcePath, out signal, out function);
+						return new { Signal = signal, Function = function, Component = inline };
+					}
+				}).ToArray();
+
+				// Now connect "left" and "right" sides of our stream components:
+				for (int i = 0; i < nodes.Length - 1; i++)
+				{
+					var left = nodes[i + 0];
+					var right = nodes[i + 1];
+					if (i == 0 && left.Component != null)
+						throw new ParserException(lastToken, "Inline component not between two signals");
+					if (i == nodes.Length - 2 && right.Component != null)
+						throw new ParserException(lastToken, "Inline component not between two signals");
+					if (left.Signal != null && right.Signal != null)
+						throw new ParserException(lastToken, "Cannot connect two signals");
+
+					var signal = left.Signal ?? right.Signal ?? schematic.AddAnonymousSignal();
+					if (left.Signal == null)
+					{
+						if (left.Component != null)
+							signal.Attach(left.Component.GetFunction("[0]"));
+						else if (left.Function != null)
+							signal.Attach(left.Function);
+						else
+							throw new ParserException(lastToken, "Incomplete attachment");
+					}
+					if (right.Signal == null)
+					{
+						if (right.Component != null)
+							signal.Attach(right.Component.GetFunction("[1]"));
+						else if (right.Function != null)
+							signal.Attach(right.Function);
+						else
+							throw new ParserException(lastToken, "Incomplete attachment");
+					}
+				}
+			}
+		}
+
+		private NodeType GetResource(Schematic schematic, ResourcePath path, out Signal signal, out Function function)
+		{
+			if (path.Count == 1)
+				signal = schematic.GetSignal(path[0]);
+			else
+				signal = null;
+
+			if (path.Count == 2)
+			{
+				var component = schematic.GetInstance(path[0]);
+				if (component == null)
+					throw new ParserException(lastToken, $"Could not find component {path[0]}.");
+				function = component.GetFunction(path[1]);
+				if (function == null)
+					throw new ParserException(lastToken, $"Component {path[0]} ({component.Component.Name}) does not contain a function {path[1]}");
+			}
+			else
+			{
+				function = null;
+			}
+			if (signal == null && function == null)
+				throw new ParserException(lastToken, $"Unrecognized symbol: {string.Join(".", path)}");
+			else if (signal != null && function == null)
+				return NodeType.Signal;
+			else if (signal == null && function != null)
+				return NodeType.Function;
+			else
+				throw new ParserException(lastToken, "Ambigious symbol definition");
+
 		}
 
 		private void ParseSignalDef(Schematic schematic)
@@ -294,6 +412,13 @@ namespace CoreSchematic.Parser
 
 		private Component DoResolveComponent(string[] name)
 		{
+			if (name.Length == 1)
+			{
+				var c = this.importedComponents.SingleOrDefault(x => x.Name == name[0]);
+				if (c != null)
+					return c;
+			}
+
 			var ea = new ResolveComponentEventArgs(name);
 			this.ResolveComponent?.Invoke(this, ea);
 			if (ea.Component == null)
@@ -301,21 +426,34 @@ namespace CoreSchematic.Parser
 			return ea.Component;
 		}
 
+		public IReadOnlyCollection<Schematic> Schematics => this.schematics;
 
 		private interface ISocket
 		{
 
 		}
 
-		private class ResourcePath : ISocket, IList<string>
+		private class ResourcePath : ISocket, IList<string>, ICloneable
 		{
-			private readonly List<string> items = new List<string>();
+			private readonly List<string> items;
 
 			public string this[int index] { get => items[index]; set => items[index] = value; }
 
 			public int Count => items.Count;
 
 			public bool IsReadOnly => ((IList<string>)items).IsReadOnly;
+
+			public ResourcePath()
+			{
+				this.items = new List<string>();
+			}
+
+			public ResourcePath(params string[] items)
+			{
+				this.items = new List<string>(items);
+			}
+
+			public ResourcePath Clone() => new ResourcePath(this.items.ToArray());
 
 			public void Add(string item)
 			{
@@ -366,13 +504,27 @@ namespace CoreSchematic.Parser
 			{
 				return ((IList<string>)items).GetEnumerator();
 			}
+
+			object ICloneable.Clone() => this.Clone();
 		}
 
 		private class InlineComponent : ISocket
 		{
-			public InlineComponent(ComponentInstance inst)
+			public InlineComponent(Component inst, string value)
 			{
+				this.Type = inst ?? throw new ArgumentNullException(nameof(inst));
+				this.Value = value ?? throw new ArgumentNullException(nameof(value));
 			}
+
+			public Component Type { get; }
+			public string Value { get; }
+		}
+
+		private enum NodeType
+		{
+			Unknown = 0,
+			Signal = 1,
+			Function = 2,
 		}
 	}
 }

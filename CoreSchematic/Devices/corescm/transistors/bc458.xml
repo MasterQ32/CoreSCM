@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<device name="BC458">
+  <package id="generic-3">
+    <pin function="E" loc="1" />
+    <pin function="B" loc="2" />
+    <pin function="C" loc="3" />
+  </package>
+</device>

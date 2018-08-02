@@ -13,40 +13,81 @@ namespace CoreSchematic
 	{
 		static void Main(string[] args)
 		{
-			var atmega32 = Device.Load("Devices/atmega32.xml");
-			var as6c1616 = Device.Load("Devices/as6c1616.xml");
-			var lpc18xx = Device.Load("Devices/lpc18xx.xml");
-
-			var schem = new Schematic("main");
-
-			var cpu = schem.AddInstance("cpu", atmega32);
-			var r1 = schem.AddInstance("R1", Component.Resistor);
-
-			var vcc = schem.AddSignal("VCC");
-			var gnd = schem.AddSignal("GND");
-
-			vcc.Attach(cpu.GetFunction("VCC"));
-			gnd.Attach(cpu.GetFunction("GND"));
-
-			vcc.Attach(r1.GetFunction("A"));
-			var anon = schem.AddAnonymousSignal();
-			anon.Attach(r1.GetFunction("B"));
-			anon.Attach(cpu.GetFunction("/RESET"));
-
-			foreach (var element in Enumerable.Zip(Range.Unwrap("A[0..1].X[3,7]"), Range.Unwrap("B[3..0]"), (a, b) => a + " -- " + b))
-			{
-				Console.WriteLine(element);
-			}
-
 			var parser = new SchematicParser();
-			parser.ResolveComponent += (s, e) => { e.Component = Component.Resistor; };
+			parser.ResolveImport += (s, e) =>
+			{
+				if (e.Path.SequenceEqual(new[] { "corescm", "builtin" }))
+				{
+					e.Library = new Component[] {
+						Component.Inductivity,
+						Component.Resistor,
+						Component.UnipolarCapacitor,
+					};
+					return;
+				}
+				var root = "Devices/" + string.Join("/", e.Path);
+				var lib = new List<Component>();
+				foreach (var file in Directory.GetFiles(root, "*.xml"))
+				{
+					lib.Add(Device.Load(file));
+				}
+				e.Library = lib;
+			};
+
 			using (var sr = new StreamReader("/home/felix/projects/CoreSCM/Examples/Astable Multivibrator.scm"))
 			{
 				parser.Parse(sr);
 			}
+
+			var output = parser.Schematics.First();
+
+			using (var sw = new StreamWriter("/tmp/foo.dot"))
+			{
+				sw.WriteLine("graph {");
+
+				sw.WriteLine("\tlabel=\"{0}\";", output.Name);
+				sw.WriteLine("\tlabelloc = \"t\";");
+				sw.WriteLine("\tsep = 0.7;");
+				sw.WriteLine("\tsplines = true");
+
+				foreach (var comp in output.Components)
+				{
+					sw.Write("\t{0} [shape=record,xlabel=\"{1}\",label=\"", Fixup(comp.Name), comp.Name);
+
+					sw.Write(string.Join("|", comp.Component.Functions.Select(f =>
+					{
+						return $"<{Fixup(f.Name)}>{f.Name}";
+					})));
+
+					sw.WriteLine("\"];");
+				}
+
+				foreach (var sig in output.Signals)
+				{
+					var name = Fixup(sig.Name ?? Path.GetRandomFileName());
+					sw.WriteLine("\t{0} [label=\"\",type=none,width=0,height=0,xlabel=\"{1}\"];", name, sig.Name ?? "");
+
+					foreach (var slot in sig.Attachments)
+					{
+						sw.WriteLine(
+							"\t{0}:{1} -- {2};",
+							Fixup(slot.Instance.Name),
+							Fixup(slot.Name),
+							name);
+					}
+				}
+
+				sw.WriteLine("}");
+			}
 		}
 
-
+		static string Fixup(string i)
+		{
+			return Regex.Replace(
+				i.Replace(".", "_").Replace("[", "__").Replace("]", ""),
+				"^\\d+",
+				"");
+		}
 
 		/*
         class Pin
