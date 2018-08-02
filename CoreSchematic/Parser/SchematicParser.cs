@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
@@ -153,35 +154,94 @@ namespace CoreSchematic.Parser
 
 		private void ParseConnector(Schematic schematic)
 		{
-			var stream = new List<List<Token>>();
-			
-			var sequence = new List<Token>();
+			Token first = null;
+			var stream = new List<List<ISocket>>();
+
+			var sequence = new List<ISocket>();
 			stream.Add(sequence);
 			do
 			{
 				var socket = Next(TType.IDENTIFIER, TType.INLINE_PART);
-				sequence.Add(socket);
-				
-				switch(Next(TType.CONNECTOR, TType.SEMICOLON, TType.COMMA).Type)
+				first = first ?? socket;
+				ISocket sock;
+				switch (socket.Type)
 				{
-				case TType.SEMICOLON:
-					// Semicolon finalizes the stream
-					goto stream_done;
-				case TType.COMMA:
-					// Comma separates elements in the current sequence, 
-					// so don't do anything here
-					break;
-				case TType.CONNECTOR:
-					// Connector separates sequences in a stream
-					// So a new connector means start a new sequence
-					sequence = new List<Token>();
-					stream.Add(sequence);
-					break;
+					case TType.IDENTIFIER:
+						var path = new ResourcePath { socket.Value };
+						while (Peek().Type == TType.DOT)
+						{
+							Next(TType.DOT);
+							path.Add(Next(TType.IDENTIFIER).Value);
+						}
+						
+						// TODO: Expand the range specifiers here
+						
+						sock= path;
+						break;
+					case TType.INLINE_PART:
+						{
+							Component comp;
+							switch (socket.Groups["type"])
+							{
+								case "R": comp = Component.Resistor; break;
+								case "C": comp = Component.UnipolarCapacitor; break;
+								case "L": comp = Component.Inductivity; break;
+								default:
+									throw new ParserException(socket, "Unkown inline component!");
+							}
+
+							var name = string.Format("{0}{1}",
+								socket.Groups["type"],
+								schematic.Components.Count(c => c.Component == comp) + 1);
+
+							var inst = schematic.AddInstance(name, comp);
+							inst.AddAttribute(new Attribute("value", socket.Groups["value"]));
+							sock = new InlineComponent(inst);
+							break;
+						}
+					default:
+						throw new ParserException(socket, "Unexpected token!");
 				}
-				
+				sequence.Add(sock);
+
+				switch (Next(TType.CONNECTOR, TType.SEMICOLON, TType.COMMA).Type)
+				{
+					case TType.SEMICOLON:
+						// Semicolon finalizes the stream
+						goto stream_done;
+					case TType.COMMA:
+						// Comma separates elements in the current sequence, 
+						// so don't do anything here
+						break;
+					case TType.CONNECTOR:
+						// Connector separates sequences in a stream
+						// So a new connector means start a new sequence
+						sequence = new List<ISocket>();
+						stream.Add(sequence);
+						break;
+				}
+
 			} while (true);
 		stream_done:
-			;
+			// Validate stream here
+			if (stream.Any(x => x.Count != 1))
+			{
+				int max = stream.Max(x => x.Count);
+				if (stream.Any(x => x.Count != max))
+				{
+					if (!stream.All(x => x.Count == max || x.Count == 1))
+						throw new ParserException(first, $"Count mismatch: Not all sockets have 1 or {max} elements!");
+					// at least one element has max count and 1 count
+				}
+				else
+				{
+					// all elements have "max" count
+				}
+			}
+			else
+			{
+
+			}
 		}
 
 		private void ParseSignalDef(Schematic schematic)
@@ -239,6 +299,80 @@ namespace CoreSchematic.Parser
 			if (ea.Component == null)
 				throw new ParserException(lastToken, $"Could not resolve the symbol {string.Join(".", name)}");
 			return ea.Component;
+		}
+
+
+		private interface ISocket
+		{
+
+		}
+
+		private class ResourcePath : ISocket, IList<string>
+		{
+			private readonly List<string> items = new List<string>();
+
+			public string this[int index] { get => items[index]; set => items[index] = value; }
+
+			public int Count => items.Count;
+
+			public bool IsReadOnly => ((IList<string>)items).IsReadOnly;
+
+			public void Add(string item)
+			{
+				items.Add(item);
+			}
+
+			public void Clear()
+			{
+				items.Clear();
+			}
+
+			public bool Contains(string item)
+			{
+				return items.Contains(item);
+			}
+
+			public void CopyTo(string[] array, int arrayIndex)
+			{
+				items.CopyTo(array, arrayIndex);
+			}
+
+			public IEnumerator<string> GetEnumerator()
+			{
+				return ((IList<string>)items).GetEnumerator();
+			}
+
+			public int IndexOf(string item)
+			{
+				return items.IndexOf(item);
+			}
+
+			public void Insert(int index, string item)
+			{
+				items.Insert(index, item);
+			}
+
+			public bool Remove(string item)
+			{
+				return items.Remove(item);
+			}
+
+			public void RemoveAt(int index)
+			{
+				items.RemoveAt(index);
+			}
+
+			IEnumerator IEnumerable.GetEnumerator()
+			{
+				return ((IList<string>)items).GetEnumerator();
+			}
+		}
+
+		private class InlineComponent : ISocket
+		{
+			public InlineComponent(ComponentInstance inst)
+			{
+			}
 		}
 	}
 }

@@ -60,7 +60,7 @@ namespace CoreSchematic.Parser
 			Tuple.Create(SchematicTokens.COMMENT, false, new Regex(@"\/\*.*?\*\/", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.Singleline)),
 			Tuple.Create(SchematicTokens.COMMENT, false, new Regex(@"\/\/.*$", RegexOptions.Compiled | RegexOptions.Multiline)),
 			Tuple.Create(SchematicTokens.KEYWORD, true, new Regex(@"\b(?<id>device|schematic|signal|import|bus)\b", RegexOptions.Compiled | RegexOptions.IgnoreCase)),
-			Tuple.Create(SchematicTokens.INLINE_PART, true, new Regex(@"\[(?<type>[RCL])\:(?<value>\d+(?:\.\d+)?)(?<unit>[pnµmdDkMGT]?)\]", RegexOptions.Compiled)),
+			Tuple.Create(SchematicTokens.INLINE_PART, true, new Regex(@"\[(?<type>[RCL])\:(?<value>(?<magnitude>\d+(?:\.\d+)?)(?<unit>[pnµmdDkMGT]?))\]", RegexOptions.Compiled)),
 			Tuple.Create(SchematicTokens.STRING, true, new Regex(@"""(?<value>[^""]+)""", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.Singleline)),
 			Tuple.Create(SchematicTokens.NUMBER, true, new Regex(@"\b(?<value>(?<magnitude>\d+(?:\.\d+)?)(?<unit>[pnµmdDkMGT]?))", RegexOptions.Compiled)),
 			Tuple.Create(SchematicTokens.CONNECTOR, true, new Regex(@"\-\-", RegexOptions.Compiled)),

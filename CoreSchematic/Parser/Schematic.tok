@@ -6,7 +6,7 @@ COMMENT/msd   := \/\*.*?\*\/
 COMMENT/md    := \/\/.*$
 
 KEYWORD/i     := \b(?<id>device|schematic|signal|import|bus)\b
-INLINE_PART   := \[(?<type>[RCL])\:(?<value>\d+(?:\.\d+)?)(?<unit>[pnµmdDkMGT]?)\]
+INLINE_PART   := \[(?<type>[RCL])\:(?<value>(?<magnitude>\d+(?:\.\d+)?)(?<unit>[pnµmdDkMGT]?))\]
 
 STRING/ms     := "(?<value>[^"]+)"
 
