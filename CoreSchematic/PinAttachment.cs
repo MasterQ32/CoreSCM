@@ -27,5 +27,7 @@ namespace CoreSchematic
 		}
 
 		public override int GetHashCode() => Part.GetHashCode() ^ Pin.GetHashCode();
+
+		public override string ToString() => $"{Part.Name}.{Pin}";
 	}
 }

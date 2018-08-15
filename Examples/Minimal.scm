@@ -1,16 +1,14 @@
 ﻿
 import corescm.test;
+import corescm.generic;
+import mq32.ics;
 
 schematic minimal
 {
-    device A : SingleThing
-    {
-        package(generic-2);
-    }
-    device B : MultiFun
-    {
-        package(generic-2);
-    }
+    device lpc : lpc18xx { package(lbga-256); }
     
-    A.X[0,1] -- B.X[0,1];
+    device bat : Battery { package(generic-2); }
+    
+    lpc.SSP0_MISO -- bat.+;
+    lpc.T0_CAP0   -- bat.-;
 }

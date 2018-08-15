@@ -76,7 +76,7 @@ namespace CoreSchematic
 				.Parts
 				.SelectMany(p => p.Component.Functions)
 				.Where(fun => fun.AttachedSignals.Count > 0)
-				.ToArray();
+				.ToList();
 			Console.WriteLine("Functions:");
 			foreach (var fun in functions)
 				Console.WriteLine("{0}.{1}", fun.Instance, fun.Name);
@@ -111,8 +111,12 @@ namespace CoreSchematic
 
 			// stores the single mapped function for each pin
 			var fixed_mapping = new Dictionary<PinAttachment, Function>();
-			
+
 			// now try to work on our pinmap to resolve all trivial pin assignments
+			// this isn't the optimal outcome,
+			// but the current strategy selects the first possible
+			// trivial pin (so with only a single function) and takes it.
+			// other options are discarded
 			bool changed;
 			do
 			{
@@ -122,14 +126,19 @@ namespace CoreSchematic
 					switch (p.Value.Count)
 					{
 						case 0:
-							throw new InvalidOperationException("Unmapped pin?!");
+							pinmap.Remove(p.Key);
+							break;
 						case 1:
 							{
 								var f = p.Value.Single();
 								fixed_mapping.Add(p.Key, f);
-								foreach (var x in pinmap)
+								foreach (var x in pinmap.ToArray())
+								{
 									x.Value.Remove(f);
-								pinmap.Remove(p.Key);
+									if (x.Value.Count == 0)
+										pinmap.Remove(x.Key);
+								}
+								functions.Remove(f);
 								changed = true;
 								break;
 							}
@@ -145,8 +154,14 @@ namespace CoreSchematic
 				Console.WriteLine("{0}.{1} => {2}", p.Key.Part.Name, p.Key.Pin, string.Join(", ", p.Value.Select(x => "[" + x + "]")));
 			}
 			
+			Console.WriteLine("Unmapped Functions:");
+			foreach (var f in functions.Where(f => !pinmap.Any(p => p.Value.Contains(f))))
+			{
+				Console.WriteLine(f);
+			}
+
 			Console.WriteLine("Final Mappings:");
-			foreach(var p in fixed_mapping)
+			foreach (var p in fixed_mapping)
 			{
 				Console.WriteLine("{0}.{1} => {2}", p.Key.Part.Name, p.Key.Pin, p.Value.Name);
 			}

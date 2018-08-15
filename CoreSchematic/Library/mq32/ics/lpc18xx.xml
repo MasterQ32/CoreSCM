@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <device name="lpc18xx">
 	<package id="LBGA-256">
-		<pin function="ADC0_0" loc="C2" />
-		<pin function="ADC0_1" loc="A1" />
-		<pin function="ADC0_2" loc="E6" />
-		<pin function="ADC0_3" loc="A7" />
-		<pin function="ADC0_4" loc="C8" />
-		<pin function="ADC0_5" loc="A3" />
-		<pin function="ADC0_6" loc="A6" />
-		<pin function="ADC1_0" loc="F5" />
-		<pin function="ADC1_1" loc="D4" />
-		<pin function="ADC1_2" loc="D6" />
-		<pin function="ADC1_3" loc="E7" />
-		<pin function="ADC1_4" loc="E9" />
-		<pin function="ADC1_5" loc="A2" />
-		<pin function="ADC1_6" loc="B6" />
-		<pin function="ADC1_7" loc="B7" />
+		<pin function="ADC0[0]" loc="C2" />
+		<pin function="ADC0[1]" loc="A1" />
+		<pin function="ADC0[2]" loc="E6" />
+		<pin function="ADC0[3]" loc="A7" />
+		<pin function="ADC0[4]" loc="C8" />
+		<pin function="ADC0[5]" loc="A3" />
+		<pin function="ADC0[6]" loc="A6" />
+		<pin function="ADC1[0]" loc="F5" />
+		<pin function="ADC1[1]" loc="D4" />
+		<pin function="ADC1[2]" loc="D6" />
+		<pin function="ADC1[3]" loc="E7" />
+		<pin function="ADC1[4]" loc="E9" />
+		<pin function="ADC1[5]" loc="A2" />
+		<pin function="ADC1[6]" loc="B6" />
+		<pin function="ADC1[7]" loc="B7" />
 		<pin function="ADCTRIG0" loc="M14" />
 		<pin function="ADCTRIG1" loc="K14,K12" />
 		<pin function="CAN0_RD" loc="G11,M14" />
@@ -25,30 +25,30 @@
 		<pin function="CGU_OUT0" loc="L1,T10" />
 		<pin function="CGU_OUT1" loc="B14,L12,P12" />
 		<pin function="CLKOUT" loc="M11,N5,T10,D14,P12" />
-		<pin function="CTIN_0" loc="K11,T14" />
-		<pin function="CTIN_1" loc="J12,P11" />
-		<pin function="CTIN_2" loc="K14,M3,E6" />
-		<pin function="CTIN_3" loc="P2,C13,E14" />
-		<pin function="CTIN_4" loc="C16,A16,E16" />
-		<pin function="CTIN_5" loc="T4,E2,B11,T6" />
-		<pin function="CTIN_6" loc="M15,L2,R16,A6,P8" />
-		<pin function="CTIN_7" loc="K16,A12" />
-		<pin function="CTOUT_0" loc="J16,D3,E13" />
-		<pin function="CTOUT_1" loc="H14,A1,D6" />
-		<pin function="CTOUT_10" loc="R5,B15,R6,N11" />
-		<pin function="CTOUT_11" loc="T7,C7,R13,D15" />
-		<pin function="CTOUT_12" loc="R7,A7,R14,D16" />
-		<pin function="CTOUT_13" loc="T5,C8,T11,T14" />
-		<pin function="CTOUT_14" loc="R8,B16,N9,G14" />
-		<pin function="CTOUT_15" loc="T9,C14,N2" />
-		<pin function="CTOUT_2" loc="G16,B1,M16" />
-		<pin function="CTOUT_3" loc="H16,C2,N16" />
-		<pin function="CTOUT_4" loc="E15,C1,F14" />
-		<pin function="CTOUT_5" loc="F16,D2,F15" />
-		<pin function="CTOUT_6" loc="R3,P16,A14,P4" />
-		<pin function="CTOUT_7" loc="R2,G15,B12,R1" />
-		<pin function="CTOUT_8" loc="P5,B6,A13,T2,T15" />
-		<pin function="CTOUT_9" loc="T3,G13,P6" />
+		<pin function="CTIN[0]" loc="K11,T14" />
+		<pin function="CTIN[1]" loc="J12,P11" />
+		<pin function="CTIN[2]" loc="K14,M3,E6" />
+		<pin function="CTIN[3]" loc="P2,C13,E14" />
+		<pin function="CTIN[4]" loc="C16,A16,E16" />
+		<pin function="CTIN[5]" loc="T4,E2,B11,T6" />
+		<pin function="CTIN[6]" loc="M15,L2,R16,A6,P8" />
+		<pin function="CTIN[7]" loc="K16,A12" />
+		<pin function="CTOUT[0]" loc="J16,D3,E13" />
+		<pin function="CTOUT[1]" loc="H14,A1,D6" />
+		<pin function="CTOUT[10]" loc="R5,B15,R6,N11" />
+		<pin function="CTOUT[11]" loc="T7,C7,R13,D15" />
+		<pin function="CTOUT[12]" loc="R7,A7,R14,D16" />
+		<pin function="CTOUT[13]" loc="T5,C8,T11,T14" />
+		<pin function="CTOUT[14]" loc="R8,B16,N9,G14" />
+		<pin function="CTOUT[15]" loc="T9,C14,N2" />
+		<pin function="CTOUT[2]" loc="G16,B1,M16" />
+		<pin function="CTOUT[3]" loc="H16,C2,N16" />
+		<pin function="CTOUT[4]" loc="E15,C1,F14" />
+		<pin function="CTOUT[5]" loc="F16,D2,F15" />
+		<pin function="CTOUT[6]" loc="R3,P16,A14,P4" />
+		<pin function="CTOUT[7]" loc="R2,G15,B12,R1" />
+		<pin function="CTOUT[8]" loc="P5,B6,A13,T2,T15" />
+		<pin function="CTOUT[9]" loc="T3,G13,P6" />
 		<pin function="DAC" loc="B1" />
 		<pin function="EMC_A[0]" loc="H16" />
 		<pin function="EMC_A[1]" loc="G16" />
@@ -501,30 +501,30 @@
 		<pin function="CAN1_TD" loc="H10" />
 		<pin function="CGU_OUT1" loc="A7" />
 		<pin function="CLKOUT" loc="K9,K3,K6" />
-		<pin function="CTIN_0" loc="D9" />
-		<pin function="CTIN_1" loc="D8" />
-		<pin function="CTIN_2" loc="D10" />
-		<pin function="CTIN_3" loc="H1" />
-		<pin function="CTIN_4" loc="A10" />
-		<pin function="CTIN_5" loc="K4" />
-		<pin function="CTIN_6" loc="F5,F6" />
-		<pin function="CTIN_7" loc="G9" />
-		<pin function="CTOUT_0" loc="C6" />
-		<pin function="CTOUT_1" loc="C10" />
-		<pin function="CTOUT_10" loc="J4" />
-		<pin function="CTOUT_11" loc="J5" />
-		<pin function="CTOUT_12" loc="H5" />
-		<pin function="CTOUT_13" loc="G4" />
-		<pin function="CTOUT_14" loc="H6" />
-		<pin function="CTOUT_15" loc="J7" />
-		<pin function="CTOUT_2" loc="E8" />
-		<pin function="CTOUT_3" loc="B10" />
-		<pin function="CTOUT_4" loc="B9" />
-		<pin function="CTOUT_5" loc="A9" />
-		<pin function="CTOUT_6" loc="K1,F9" />
-		<pin function="CTOUT_7" loc="K2" />
-		<pin function="CTOUT_8" loc="J1" />
-		<pin function="CTOUT_9" loc="J2" />
+		<pin function="CTIN[0]" loc="D9" />
+		<pin function="CTIN[1]" loc="D8" />
+		<pin function="CTIN[2]" loc="D10" />
+		<pin function="CTIN[3]" loc="H1" />
+		<pin function="CTIN[4]" loc="A10" />
+		<pin function="CTIN[5]" loc="K4" />
+		<pin function="CTIN[6]" loc="F5,F6" />
+		<pin function="CTIN[7]" loc="G9" />
+		<pin function="CTOUT[0]" loc="C6" />
+		<pin function="CTOUT[1]" loc="C10" />
+		<pin function="CTOUT[10]" loc="J4" />
+		<pin function="CTOUT[11]" loc="J5" />
+		<pin function="CTOUT[12]" loc="H5" />
+		<pin function="CTOUT[13]" loc="G4" />
+		<pin function="CTOUT[14]" loc="H6" />
+		<pin function="CTOUT[15]" loc="J7" />
+		<pin function="CTOUT[2]" loc="E8" />
+		<pin function="CTOUT[3]" loc="B10" />
+		<pin function="CTOUT[4]" loc="B9" />
+		<pin function="CTOUT[5]" loc="A9" />
+		<pin function="CTOUT[6]" loc="K1,F9" />
+		<pin function="CTOUT[7]" loc="K2" />
+		<pin function="CTOUT[8]" loc="J1" />
+		<pin function="CTOUT[9]" loc="J2" />
 		<pin function="EMC_A[0]" loc="B10" />
 		<pin function="EMC_A[1]" loc="E8" />
 		<pin function="EMC_A[10]" loc="G9" />
@@ -729,11 +729,11 @@
 		<pin function="USB1_VBUS" loc="D10" />
 	</package>
 	<package id="LQFP-144">
-		<pin function="ADC0_0" loc="7" />
-		<pin function="ADC0_1" loc="3" />
-		<pin function="ADC0_3" loc="133" />
-		<pin function="ADC0_4" loc="132" />
-		<pin function="ADC1_6" loc="140" />
+		<pin function="ADC0[0]" loc="7" />
+		<pin function="ADC0[1]" loc="3" />
+		<pin function="ADC0[3]" loc="133" />
+		<pin function="ADC0[4]" loc="132" />
+		<pin function="ADC1[6]" loc="140" />
 		<pin function="ADCTRIG1" loc="91" />
 		<pin function="CAN0_RD" loc="114" />
 		<pin function="CAN0_TD" loc="116" />
@@ -741,30 +741,30 @@
 		<pin function="CAN1_TD" loc="66,15" />
 		<pin function="CGU_OUT1" loc="118" />
 		<pin function="CLKOUT" loc="68,45,99" />
-		<pin function="CTIN_0" loc="88" />
-		<pin function="CTIN_1" loc="87" />
-		<pin function="CTIN_2" loc="91,35" />
-		<pin function="CTIN_3" loc="38,117" />
-		<pin function="CTIN_4" loc="108,115" />
-		<pin function="CTIN_5" loc="49,15" />
-		<pin function="CTIN_6" loc="84,33,80" />
-		<pin function="CTIN_7" loc="95" />
-		<pin function="CTOUT_0" loc="98,8" />
-		<pin function="CTOUT_1" loc="96,3" />
-		<pin function="CTOUT_10" loc="48" />
-		<pin function="CTOUT_11" loc="52,134" />
-		<pin function="CTOUT_12" loc="51,133" />
-		<pin function="CTOUT_13" loc="50,132" />
-		<pin function="CTOUT_14" loc="53,110" />
-		<pin function="CTOUT_15" loc="55,113" />
-		<pin function="CTOUT_2" loc="104,9" />
-		<pin function="CTOUT_3" loc="102,7" />
-		<pin function="CTOUT_4" loc="106,11" />
-		<pin function="CTOUT_5" loc="105,10" />
-		<pin function="CTOUT_6" loc="43,82" />
-		<pin function="CTOUT_7" loc="42,103" />
-		<pin function="CTOUT_8" loc="44,140" />
-		<pin function="CTOUT_9" loc="47" />
+		<pin function="CTIN[0]" loc="88" />
+		<pin function="CTIN[1]" loc="87" />
+		<pin function="CTIN[2]" loc="91,35" />
+		<pin function="CTIN[3]" loc="38,117" />
+		<pin function="CTIN[4]" loc="108,115" />
+		<pin function="CTIN[5]" loc="49,15" />
+		<pin function="CTIN[6]" loc="84,33,80" />
+		<pin function="CTIN[7]" loc="95" />
+		<pin function="CTOUT[0]" loc="98,8" />
+		<pin function="CTOUT[1]" loc="96,3" />
+		<pin function="CTOUT[10]" loc="48" />
+		<pin function="CTOUT[11]" loc="52,134" />
+		<pin function="CTOUT[12]" loc="51,133" />
+		<pin function="CTOUT[13]" loc="50,132" />
+		<pin function="CTOUT[14]" loc="53,110" />
+		<pin function="CTOUT[15]" loc="55,113" />
+		<pin function="CTOUT[2]" loc="104,9" />
+		<pin function="CTOUT[3]" loc="102,7" />
+		<pin function="CTOUT[4]" loc="106,11" />
+		<pin function="CTOUT[5]" loc="105,10" />
+		<pin function="CTOUT[6]" loc="43,82" />
+		<pin function="CTOUT[7]" loc="42,103" />
+		<pin function="CTOUT[8]" loc="44,140" />
+		<pin function="CTOUT[9]" loc="47" />
 		<pin function="DAC" loc="9" />
 		<pin function="EMC_A[0]" loc="102" />
 		<pin function="EMC_A[1]" loc="104" />
@@ -1064,19 +1064,19 @@
 		<pin function="USB1_VBUS" loc="91" />
 	</package>
 	<package id="LQFP-208">
-		<pin function="ADC0_0" loc="10" />
-		<pin function="ADC0_1" loc="3" />
-		<pin function="ADC0_3" loc="191" />
-		<pin function="ADC0_4" loc="189" />
-		<pin function="ADC0_5" loc="205" />
-		<pin function="ADC1_0" loc="11" />
-		<pin function="ADC1_1" loc="7" />
-		<pin function="ADC1_2" loc="203" />
-		<pin function="ADC1_3" loc="192" />
-		<pin function="ADC1_4" loc="190" />
-		<pin function="ADC1_5" loc="207" />
-		<pin function="ADC1_6" loc="201" />
-		<pin function="ADC1_7" loc="193" />
+		<pin function="ADC0[0]" loc="10" />
+		<pin function="ADC0[1]" loc="3" />
+		<pin function="ADC0[3]" loc="191" />
+		<pin function="ADC0[4]" loc="189" />
+		<pin function="ADC0[5]" loc="205" />
+		<pin function="ADC1[0]" loc="11" />
+		<pin function="ADC1[1]" loc="7" />
+		<pin function="ADC1[2]" loc="203" />
+		<pin function="ADC1[3]" loc="192" />
+		<pin function="ADC1[4]" loc="190" />
+		<pin function="ADC1[5]" loc="207" />
+		<pin function="ADC1[6]" loc="201" />
+		<pin function="ADC1[7]" loc="193" />
 		<pin function="ADCTRIG0" loc="115" />
 		<pin function="ADCTRIG1" loc="131,118" />
 		<pin function="CAN0_RD" loc="163,115" />
@@ -1086,30 +1086,30 @@
 		<pin function="CGU_OUT0" loc="49" />
 		<pin function="CGU_OUT1" loc="169,126" />
 		<pin function="CLKOUT" loc="96,62,141" />
-		<pin function="CTIN_0" loc="128,97" />
-		<pin function="CTIN_1" loc="127,86" />
-		<pin function="CTIN_2" loc="131,51" />
-		<pin function="CTIN_3" loc="54,167,154" />
-		<pin function="CTIN_4" loc="156,165,152" />
-		<pin function="CTIN_5" loc="67,23,180,72" />
-		<pin function="CTIN_6" loc="121,48,114,74" />
-		<pin function="CTIN_7" loc="137,181" />
-		<pin function="CTOUT_0" loc="140,12" />
-		<pin function="CTOUT_1" loc="138,3,203" />
-		<pin function="CTOUT_10" loc="65,164,68,94" />
-		<pin function="CTOUT_11" loc="73,194,99" />
-		<pin function="CTOUT_12" loc="71,191,104" />
-		<pin function="CTOUT_13" loc="69,189,84,97" />
-		<pin function="CTOUT_14" loc="75,158,88" />
-		<pin function="CTOUT_15" loc="77,162" />
-		<pin function="CTOUT_2" loc="146,14,124" />
-		<pin function="CTOUT_3" loc="144,10,122" />
-		<pin function="CTOUT_4" loc="153,17,150" />
-		<pin function="CTOUT_5" loc="148,15,149" />
-		<pin function="CTOUT_6" loc="60,117,175" />
-		<pin function="CTOUT_7" loc="58,145,177" />
-		<pin function="CTOUT_8" loc="61,201,178,101" />
-		<pin function="CTOUT_9" loc="64,151" />
+		<pin function="CTIN[0]" loc="128,97" />
+		<pin function="CTIN[1]" loc="127,86" />
+		<pin function="CTIN[2]" loc="131,51" />
+		<pin function="CTIN[3]" loc="54,167,154" />
+		<pin function="CTIN[4]" loc="156,165,152" />
+		<pin function="CTIN[5]" loc="67,23,180,72" />
+		<pin function="CTIN[6]" loc="121,48,114,74" />
+		<pin function="CTIN[7]" loc="137,181" />
+		<pin function="CTOUT[0]" loc="140,12" />
+		<pin function="CTOUT[1]" loc="138,3,203" />
+		<pin function="CTOUT[10]" loc="65,164,68,94" />
+		<pin function="CTOUT[11]" loc="73,194,99" />
+		<pin function="CTOUT[12]" loc="71,191,104" />
+		<pin function="CTOUT[13]" loc="69,189,84,97" />
+		<pin function="CTOUT[14]" loc="75,158,88" />
+		<pin function="CTOUT[15]" loc="77,162" />
+		<pin function="CTOUT[2]" loc="146,14,124" />
+		<pin function="CTOUT[3]" loc="144,10,122" />
+		<pin function="CTOUT[4]" loc="153,17,150" />
+		<pin function="CTOUT[5]" loc="148,15,149" />
+		<pin function="CTOUT[6]" loc="60,117,175" />
+		<pin function="CTOUT[7]" loc="58,145,177" />
+		<pin function="CTOUT[8]" loc="61,201,178,101" />
+		<pin function="CTOUT[9]" loc="64,151" />
 		<pin function="DAC" loc="14" />
 		<pin function="EMC_A[0]" loc="144" />
 		<pin function="EMC_A[1]" loc="146" />
