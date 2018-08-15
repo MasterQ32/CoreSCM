@@ -10,6 +10,8 @@ namespace CoreSchematic
     {
         private readonly Dictionary<string, DeviceConfiguration> packages = new Dictionary<string, DeviceConfiguration>();
 
+		public IReadOnlyDictionary<string, DeviceConfiguration> Packages => this.packages;
+
         public Device(string name) : base(name)
         {
             

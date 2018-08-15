@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<device name="MultiFun">
+  <package id="generic-2">
+    <pin function="X[0]" loc="1" />
+    <pin function="X[1]" loc="1,2" />
+  </package>
+</device>

@@ -34,7 +34,7 @@ namespace CoreSchematic
 
         public bool IsExclusive { get; private set; }
 
-        public IReadOnlyCollection<Function> Functions { get; }
+        public IReadOnlyCollection<Function> Functions => this.functions;
 
         public override string ToString() => $"{Pin} => ({string.Join(",", Functions)})";
     }

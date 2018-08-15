@@ -73,42 +73,53 @@
     <Compile Include="Parser\ResolveComponentEventArgs.cs" />
     <Compile Include="Attribute.cs" />
     <Compile Include="Parser\ResolveImportEventArgs.cs" />
+    <Compile Include="PCB.cs" />
+    <Compile Include="Net.cs" />
+    <Compile Include="PinAttachment.cs" />
+    <Compile Include="Part.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Parser\Schematic.tok" />
-    <None Include="Devices\corescm\generic\battery.xml">
+    <None Include="Library\corescm\generic\battery.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Devices\corescm\generic\led.xml">
+    <None Include="Library\corescm\generic\led.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Devices\corescm\transistors\bc458.xml">
+    <None Include="Library\corescm\transistors\bc458.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Devices\corescm\el-cap.xml">
+    <None Include="Library\corescm\el-cap.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Library\corescm\test\multifun.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Library\corescm\test\singlething.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Devices\mq32\ics\as6c1616.xml">
+    <Content Include="Library\mq32\ics\as6c1616.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Devices\mq32\ics\atmega32.xml">
+    <Content Include="Library\mq32\ics\atmega32.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Devices\mq32\ics\lpc18xx.xml">
+    <Content Include="Library\mq32\ics\lpc18xx.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <Folder Include="Parser\" />
-    <Folder Include="Devices\corescm\" />
-    <Folder Include="Devices\corescm\generic\" />
-    <Folder Include="Devices\mq32\" />
-    <Folder Include="Devices\mq32\ics\" />
-    <Folder Include="Devices\corescm\transistors\" />
+    <Folder Include="Library\corescm\" />
+    <Folder Include="Library\corescm\generic\" />
+    <Folder Include="Library\mq32\" />
+    <Folder Include="Library\mq32\ics\" />
+    <Folder Include="Library\corescm\transistors\" />
+    <Folder Include="Library\corescm\test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
